@@ -33,8 +33,16 @@ func Move(res http.ResponseWriter, req *http.Request) {
 	}
 	dump(decoded)
 
+	directions := []string{
+		"up",
+		"down",
+		"left",
+		"right",
+	}
+	r := rand.New(rand.NewSource(time.Now().UnixNano()))
+	
 	respond(res, api.MoveResponse{
-		Move: "down",
+		Move: directions[r.Intn(4)],
 	})
 }
 
