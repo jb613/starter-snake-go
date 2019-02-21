@@ -33,6 +33,7 @@ func Move(res http.ResponseWriter, req *http.Request) {
 	}
 	dump(decoded)
 
+	/*
 	directions := []string{
 		"up",
 		"down",
@@ -44,6 +45,18 @@ func Move(res http.ResponseWriter, req *http.Request) {
 	respond(res, api.MoveResponse{
 		Move: directions[r.Intn(4)],
 	})
+	*/
+	boardWidth := decoded.Board.Width
+	myX := decoded.You.Body.X
+	if (boardWidth - myX) > (myX) {
+		respond(res, api.MoveResponse{
+			Move: "right",
+		}
+	} else {
+		respond(res, api.MoveResponse{
+			Move: "left",
+		}
+	}
 }
 
 func End(res http.ResponseWriter, req *http.Request) {
